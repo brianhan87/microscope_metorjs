@@ -20,6 +20,10 @@ Meteor.methods({
         postWithSameLink._id);
     }
 
+    // check the post has a url
+    if (!postAttributes.url)
+      throw new Meteor.Error(402, 'Please add a url');
+
     // pick out the whitelisted keys
     var post = _.extend(_.pick(postAttributes, 'url', 'title', 'message'), {
       userId: user._id, 
